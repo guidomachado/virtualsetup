@@ -206,4 +206,69 @@ class Plants extends \yii\db\ActiveRecord
             'Status_M139' => 'Status M139',
         ];
     }
+
+    private static $validEntradas = array(
+        'Belt Conveyor Gate' => 'Belt Conveyor Gate',
+        'Capacitive Sensor' => 'Capacitive Sensor',
+        'Diffuse Sensor' => 'Diffuse Sensor',
+        'Inductive Sensor' => 'Inductive Sensor',
+        'Left Positioner Limit' => 'Left Positioner(Limit)',
+        'Left Positioner Clamped' => 'Left Positioner (Clamped)',
+        'Reset Button' => 'Reset Button',
+        'Retroreflective Sensor' => 'Retroreflective Sensor',
+        'Right Positioner' => 'Right Positioner',
+        'Start Button'=>'Start Button',
+        'Stop Button' => 'Stop Button',
+        'Pick Place Detected' => 'Pick Place (Detected)',
+        'Pick Place Moving X' => 'Pick Place (Moving X)',
+        'Pick Place Moving Z' => 'Pick Place (Moving Z)',
+    );
+
+    public static function getValidEntradas()
+    {
+        return self::$validEntradas;
+    }
+
+    public function getPropertyStatusForDisplayEntradas()
+    {
+        if (isset(self::$validEntradas[$this->entrada]))
+            return self::$validEntradas[$this->entrada];
+
+        return false;
+    }
+
+    private static $validSaidas = array(
+        'Belt Conveyor' => 'Belt Conveyor',
+        'Chain Transfer' => 'Chain Transfer',
+        'Left Positioner Clamp' => 'Left Positioner (Clamp)',
+        'Left Positioner Raise' => 'Left Positioner (Raise',
+        'Loading Conveyor' => 'Loading Conveyor',
+        'Pivot Arm Sorter Turn' => 'Pivot Arm Sorter Turn',
+        'Pivot Arm Sorter Belt+' => 'Pivot Arm Sorter Turn +',
+        'Emitter' => 'Emitter',
+        'Remover' => 'Remover',
+        'Esteira 2m' => 'Esteira 2m',
+        'Roller stop' =>'Roller Stop',
+        'Stack Light Red' => 'Stack Light Red',
+        'Stak Light Green' => 'Stack Light Green',
+        'Stack Light Yellow' => 'Stack Light Yellow',
+        'Start Button Light' => 'Start Button Light',
+        'Stop Button Light' => 'Stop Button Light',
+        'Pick Place X' => 'Pick Place X',
+        'Pick Place Z' => 'Pick Place Z',
+        'Pick Place Grab' => 'Pick Place (Grab)',
+    );
+
+    public static function getValidSaidas()
+    {
+        return self::$validSaidas;
+    }
+    
+    public function getPropertyStatusForDisplaySaidas()
+    {
+        if (isset(self::$validSaidas[$this->saida]))
+            return self::$validSaidas;
+        
+        return false;
+    }
 }
