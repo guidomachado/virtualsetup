@@ -163,8 +163,8 @@ $statuscoil = json_encode($statusc);
     </head>
     <body>
         
-        <canvas id="teladireita" width="500" height="600" style="border:1px solid #000000;"></canvas>
-        <canvas id="telaesquerda" width="500" height="600" style="border:1px solid #000000;"></canvas>
+        <canvas id="teladireita" width="550" height="600" style="border:8px dashed red; background-color:AliceBlue;"></canvas>
+        <canvas id="telaesquerda" width="550" height="600" style="border:8px dashed #000000; background-color:LightGrey;"></canvas>
          
         
 
