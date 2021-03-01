@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=virtualsetup',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'mysql:host=virtualsetup.mysql.dbaas.com.br;dbname=virtualsetup',
+    'username' => 'virtualsetup',
+    'password' => 'projetosuper',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
