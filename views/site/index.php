@@ -15,7 +15,7 @@ $this->title = 'Virtual Setup';
     
     <br>
 
-    <p><a class="btn btn-lg btn-block btn-primary" href="http://localhost:80/virtualsetup/virtualsetup/web/index.php?r=plants">Cadastrar Plantas / Visualizar Plantas</a></p>
+    <p><a class="btn btn-lg btn-block btn-primary" href="../../virtualsetup/web/index.php?r=plants">Cadastrar Plantas / Visualizar Plantas</a></p>
     </div>
 
     <div class="body-content">
