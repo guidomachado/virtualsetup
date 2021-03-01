@@ -16,5 +16,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <h3>Contato: 982019419</h3>
     </p>
-    <code><?= __FILE__ ?></code>
+   <!--<code><?= __FILE__ ?></code>-->
 </div>
