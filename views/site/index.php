@@ -10,7 +10,7 @@ $this->title = 'Virtual Setup';
         <p>Ferramenta para virtualização de plantas industriais.</p>
     <div>
 
-    <img src="../../img/twin.jpg" alt="" class="mx-auto d-block"  width="100%" height="400px" class="img-thumbnail" >
+    <img src="../img/twin.jpg" alt="" class="mx-auto d-block"  width="100%" height="400px" class="img-thumbnail" >
     </div>
     
     <br>
