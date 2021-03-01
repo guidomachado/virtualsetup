@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Plants;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Plants */
@@ -142,7 +143,7 @@ use yii\widgets\ActiveForm;
     array('prompt'=>'Selecione a saída')) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

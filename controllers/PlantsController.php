@@ -95,6 +95,41 @@ class PlantsController extends Controller
         ]);
     }
 
+
+     /**
+     * teste de virtualização
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * 
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionVirtualizar($id)
+    {
+        $model = $this->findModel($id); 
+
+        
+        return $this->render('virtualizar', [
+            'model' => $model,
+        ]);
+        
+    }
+
+    /**
+     * Supervisiona a planta escolhida.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionSupervise($id)
+    {
+        $model = $this->findModel($id); 
+
+        
+        return $this->render('supervisao', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Deletes an existing Plants model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
