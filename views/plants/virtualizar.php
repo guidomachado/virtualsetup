@@ -205,8 +205,8 @@ $statuscoil = json_encode($statusc);
                 for (var i = 0; i < numentr ; i++) {
                     if(vetord.length == 0 & ntexto.length == 0  ){   //
                      var posicao = {
-                        x:0,
-                        y:0
+                        x:10,
+                        y:5
                         };
                         vetord[i]=posicao;
                         ntexto[i]=texto;
@@ -264,8 +264,8 @@ $statuscoil = json_encode($statusc);
                 for (var i = 0; i < numsaida; i++) {
                     if(vetore.length == 0 & ntxtout.length == 0){
                      var posicao = {
-                        x:0,
-                        y:50
+                        x:10,
+                        y:60
                         };
                         vetore[i]=posicao;
                         ntxtout[i] = txtout;
@@ -307,7 +307,7 @@ $statuscoil = json_encode($statusc);
                     ctxe.beginPath();                   
                     ctxe.moveTo(posicao.x, posicao.y); //Ponto inicial do triangulo
                     ctxe.lineTo(posicao.x+lado, posicao.y);
-                    ctxe.lineTo(lado/2, posicao.y-lado);
+                    ctxe.lineTo(lado/2+5, posicao.y-lado);
                     ctxe.lineTo(posicao.x, posicao.y);
                     ctxe.fill();
                     ctxe.stroke();
@@ -340,7 +340,7 @@ $statuscoil = json_encode($statusc);
                     ctxe.beginPath();                   
                     ctxe.moveTo(posicao.x, posicao.y); //Ponto inicial do triangulo
                     ctxe.lineTo(posicao.x+lado, posicao.y);
-                    ctxe.lineTo(lado/2, posicao.y-lado);
+                    ctxe.lineTo(lado/2+5, posicao.y-lado);
                     ctxe.lineTo(posicao.x, posicao.y);
                     ctxe.fill();
                     ctxe.stroke();
