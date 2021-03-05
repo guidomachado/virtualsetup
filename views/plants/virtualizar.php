@@ -34,11 +34,44 @@ if($plantas->Status_M100){$status[0]= $plantas->Status_M100;}
 if($plantas->Status_M101){$status[1]= $plantas->Status_M101;}
 if($plantas->Status_M102){$status[2]= $plantas->Status_M102;}
 if($plantas->Status_M103){$status[3]= $plantas->Status_M103;}
+if($plantas->Status_M104){$status[4]= $plantas->Status_M104;}
+if($plantas->Status_M105){$status[5]= $plantas->Status_M105;}
+if($plantas->Status_M106){$status[6]= $plantas->Status_M106;}
+if($plantas->Status_M107){$status[7]= $plantas->Status_M107;}
+if($plantas->Status_M108){$status[8]= $plantas->Status_M108;}
+if($plantas->Status_M109){$status[9]= $plantas->Status_M109;}
+if($plantas->Status_M110){$status[10]= $plantas->Status_M110;}
+if($plantas->Status_M111){$status[11]= $plantas->Status_M111;}
+if($plantas->Status_M112){$status[12]= $plantas->Status_M112;}
+if($plantas->Status_M113){$status[13]= $plantas->Status_M113;}
+if($plantas->Status_M114){$status[14]= $plantas->Status_M114;}
+if($plantas->Status_M115){$status[15]= $plantas->Status_M115;}
+if($plantas->Status_M116){$status[16]= $plantas->Status_M116;}
+if($plantas->Status_M117){$status[17]= $plantas->Status_M117;}
+if($plantas->Status_M118){$status[18]= $plantas->Status_M118;}
+if($plantas->Status_M119){$status[19]= $plantas->Status_M119;}
 
 if($plantas->Status_M120){$statusc[0]= $plantas->Status_M100;}
 if($plantas->Status_M121){$statusc[1]= $plantas->Status_M121;}
 if($plantas->Status_M122){$statusc[2]= $plantas->Status_M122;}
 if($plantas->Status_M123){$statusc[3]= $plantas->Status_M123;}
+if($plantas->Status_M124){$statusc[4]= $plantas->Status_M124;}
+if($plantas->Status_M125){$statusc[5]= $plantas->Status_M125;}
+if($plantas->Status_M126){$statusc[6]= $plantas->Status_M126;}
+if($plantas->Status_M127){$statusc[7]= $plantas->Status_M127;}
+if($plantas->Status_M128){$statusc[8]= $plantas->Status_M128;}
+if($plantas->Status_M129){$statusc[9]= $plantas->Status_M129;}
+if($plantas->Status_M130){$statusc[10]= $plantas->Status_M130;}
+if($plantas->Status_M131){$statusc[11]= $plantas->Status_M131;}
+if($plantas->Status_M132){$statusc[12]= $plantas->Status_M132;}
+if($plantas->Status_M133){$statusc[13]= $plantas->Status_M133;}
+if($plantas->Status_M134){$statusc[14]= $plantas->Status_M134;}
+if($plantas->Status_M135){$statusc[15]= $plantas->Status_M135;}
+if($plantas->Status_M136){$statusc[16]= $plantas->Status_M136;}
+if($plantas->Status_M137){$statusc[17]= $plantas->Status_M137;}
+if($plantas->Status_M138){$statusc[18]= $plantas->Status_M138;}
+if($plantas->Status_M139){$statusc[19]= $plantas->Status_M139;}
+
 // Chamando os NOMES DE ENTRADAS no BANCO DE DADOS
 if($plantas->Entrada_0){$nomesE[0]= $plantas->Entrada_0;}
 if($plantas->Entrada_1){$nomesE[1]= $plantas->Entrada_1;}
@@ -143,15 +176,7 @@ $statuscoil = json_encode($statusc);
    
 
     <div>
-            
-            <p>
-                <button onclick="entrada()">entrada</button>
-                <button onclick="saida()">saida</button>
-                <button onclick="sinal()">sinal</button>
-                <button onclick="coracao()">Esteira</button>
-        
-            </p>
-            
+                                 
             
     </div>
 
@@ -162,9 +187,11 @@ $statuscoil = json_encode($statusc);
 
     </head>
     <body>
-        
+
+        <canvas id="telacentral" width="1135" height="50" style="border:1px dashed red; background-color:AliceBlue;" ></canvas>
         <canvas id="teladireita" width="550" height="600" style="border:8px dashed red; background-color:AliceBlue;"></canvas>
         <canvas id="telaesquerda" width="550" height="600" style="border:8px dashed #000000; background-color:LightGrey;"></canvas>
+        <canvas id="telaabaixo" width="1135" height="50" style="border:1px dashed red; background-color:LightSteelBlue;" ></canvas> 
          
         
 
@@ -177,31 +204,24 @@ $statuscoil = json_encode($statusc);
                  var sinalM = new Array(); 
                  var sinalc = <?php echo $statuscoil;?>; //status
                  var sinalcl = new Array(); 
-                 //alert('nome: ' + texto);
-                //var tempo = 5000;
-               // for (var i= 0; i < tempo; i++){
-               // var canvasd = document.location.reload(true);}
-                             
+                
                 var canvasd = document.getElementById("teladireita");
                 var canvase = document.getElementById("telaesquerda");
+                var canvasc = document.getElementById("telacentral");
+                var canvasab = document.getElementById("telaabaixo");
                 var ctxd=canvasd.getContext("2d");
                 var ctxe=canvase.getContext("2d");
+                var ctxc=canvasc.getContext("2d");
+                var ctxab=canvasab.getContext("2d");
                 
-               /*function desenhaImagem() {
-                var imagem = new Image();
-                imagem.src = "https://s.aolcdn.com/hss/storage/midas/b386937631a1f03665c1d57289070898/203417456/simpsons.jpg";
-                    imagem.onload = function() {
-                      ctxd.drawImage(imagem,0,0, 500,600);
-                                }
-                                }
-                desenhaImagem();*/
-
+               
                 var numentr = <?php echo $nentrada;?> ;
                 var numsaida = <?php echo $nsaida;?>  ;
                 
                 var vetord = new Array();
                 var vetore = new Array();
-                // PARA O CANVAS DA TELA DIREITA
+
+                // PARA O CANVAS DA TELA DIREITA "SINAL DE ENTRADA"
                 for (var i = 0; i < numentr ; i++) {
                     if(vetord.length == 0 & ntexto.length == 0  ){   //
                      var posicao = {
@@ -210,9 +230,7 @@ $statuscoil = json_encode($statusc);
                         };
                         vetord[i]=posicao;
                         ntexto[i]=texto;
-                        
-
-                        
+                                                
                     }
                     else if (vetord.length < 10 & ntexto.length < 10 ){      //
                     var temp = vetord.length -1;
@@ -228,7 +246,7 @@ $statuscoil = json_encode($statusc);
                         if(vetord.length == 10 & ntexto.length == 10  ){
                         var posicao = {
                         x:250,
-                        y:0
+                        y:5
                         };
                         vetord[i]=posicao;
                         ntexto[i]=texto;
@@ -248,9 +266,9 @@ $statuscoil = json_encode($statusc);
                     ctxd.fillStyle="#FF0000";
                     ctxd.fillRect(posicao.x, posicao.y,50,50);          //criação do quadrado
                     ctxd.strokeRect(posicao.x, posicao.y,50,50);        //borda do quadrado
-                    ctxd.font = '10px Arial';                           //tamanho e fonte do texto
+                    ctxd.font = '14px Arial';                           //tamanho e fonte do texto
                     ctxd.fillStyle="#4B0082";                           //cor roxo
-                    ctxd.fillText(texto[i], posicao.x+5, posicao.y+25); //exibição do texto                  
+                    ctxd.fillText(texto[i], posicao.x+55, posicao.y+25); //exibição do texto                  
                     //setInterval("Desenhard",3000);
                     Desenhard ();
                
@@ -260,12 +278,12 @@ $statuscoil = json_encode($statusc);
                 } //fim do for tela direita
             
 
-                // PARA O CANVAS DA TELA ESQUERDA
+                // PARA O CANVAS DA TELA ESQUERDA "SINAL DE SAÍDA"
                 for (var i = 0; i < numsaida; i++) {
                     if(vetore.length == 0 & ntxtout.length == 0){
                      var posicao = {
                         x:10,
-                        y:60
+                        y:55
                         };
                         vetore[i]=posicao;
                         ntxtout[i] = txtout;
@@ -283,7 +301,7 @@ $statuscoil = json_encode($statusc);
                         if(vetore.length == 10 & ntxtout.length == 10){
                         var posicao = {
                         x:250,
-                        y:0
+                        y:55
                         };
                         vetore[i]=posicao;
                         ntxtout[i] = txtout;
@@ -300,21 +318,19 @@ $statuscoil = json_encode($statusc);
 
                     }
 
-                  /*  ctxe.fillStyle="#0000FF";  //azul
-                    ctxe.fillRect(posicao.x, posicao.y,50,50);*/
                     ctxe.fillStyle="#FFFF00"; //cor amarela
                     var lado = 50;
                     ctxe.beginPath();                   
                     ctxe.moveTo(posicao.x, posicao.y); //Ponto inicial do triangulo
                     ctxe.lineTo(posicao.x+lado, posicao.y);
-                    ctxe.lineTo(lado/2+5, posicao.y-lado);
+                    ctxe.lineTo((posicao.x+lado/2), posicao.y-lado);
                     ctxe.lineTo(posicao.x, posicao.y);
                     ctxe.fill();
                     ctxe.stroke();
-                    ctxe.font = '10px Arial';                           //tamanho e fonte do texto
+                    ctxe.font = '14px Arial';                           //tamanho e fonte do texto
                     ctxe.fillStyle="#4B0082";                           //cor roxo
-                    ctxe.fillText(txtout[i], posicao.x+5, posicao.y-5); //exibição do texto  
-                    Desenhare();                       
+                    ctxe.fillText(txtout[i], posicao.x+lado+5, posicao.y-20); //exibição do texto  
+                    Desenhare();                   
                 }
                 
                 function Desenhard() {
@@ -322,9 +338,9 @@ $statuscoil = json_encode($statusc);
                     ctxd.fillStyle="##FF4500";
                     ctxd.fillRect(posicao.x, posicao.y,50,50);          //criação do quadrado
                     ctxd.strokeRect(posicao.x, posicao.y,50,50);
-                    ctxd.font = '10px Arial';                           //tamanho e fonte do texto
+                    ctxd.font = '14px Arial';                           //tamanho e fonte do texto
                     ctxd.fillStyle="#F8F8FF";                           //cor roxo
-                    ctxd.fillText(texto[i], posicao.x+5, posicao.y+25); //exibição do texto 
+                    ctxd.fillText(texto[i], posicao.x+55, posicao.y+25); //exibição do texto 
                     }
                 else{
                     //ctxd.fillStyle="#FF0000";
@@ -335,18 +351,18 @@ $statuscoil = json_encode($statusc);
             
                 function Desenhare() {
                     if(sinalc[i] == 1){
-                    ctxe.fillStyle="#B0E0E6"; //cor amarela
+                    ctxe.fillStyle="#B0E0E6"; //cor azul
                     var lado = 50;
                     ctxe.beginPath();                   
                     ctxe.moveTo(posicao.x, posicao.y); //Ponto inicial do triangulo
                     ctxe.lineTo(posicao.x+lado, posicao.y);
-                    ctxe.lineTo(lado/2+5, posicao.y-lado);
+                    ctxe.lineTo((posicao.x+lado/2), posicao.y-lado);
                     ctxe.lineTo(posicao.x, posicao.y);
                     ctxe.fill();
                     ctxe.stroke();
-                    ctxe.font = '10px Arial';                           //tamanho e fonte do texto
+                    ctxe.font = '14px Arial';                           //tamanho e fonte do texto
                     ctxe.fillStyle="#4B0082";                           //cor roxo
-                    ctxe.fillText(txtout[i], posicao.x+5, posicao.y-5); //exibição do texto  
+                    ctxe.fillText(txtout[i], posicao.x+lado+5, posicao.y-20); //exibição do texto   
                     
                     }
                 else{
@@ -355,7 +371,57 @@ $statuscoil = json_encode($statusc);
                     //ctxd.strokeRect(posicao.x, posicao.y,50,50);
                 }
                 }
-       
+                
+
+                    // LEGENDA NA PARTE ACIMA
+                    ctxc.font = '18px Arial';                           //tamanho e fonte do texto
+                    ctxc.fillStyle="#4B0082";                           //cor roxo
+                    ctxc.fillText("Sinal de Entrada", 250, 30);
+                    ctxc.fillText("Sinal de Saída", 750, 30);
+
+                    // LEGENDAS NA PARTE ABAIXO
+                    ctxab.fillStyle="#FF0000";                           // cor vermelho
+                    ctxab.fillRect(5, 5,20,20);          //criação do quadrado
+                    ctxab.strokeRect(5, 5,20,20);        //borda do quadrado
+                    ctxab.font = '14px Arial';                           //tamanho e fonte do texto
+                    ctxab.fillStyle="black";                           
+                    ctxab.fillText("ENTRADA DESACIONADA", 28, 18); //exibição do texto
+
+                    ctxab.fillStyle="#4B0082";                           // cor roxa
+                    ctxab.fillRect(220, 5,20,20);          //criação do quadrado
+                    ctxab.strokeRect(220, 5,20,20);        //borda do quadrado
+                    ctxab.font = '14px Arial';                           //tamanho e fonte do texto
+                    ctxab.fillStyle="black"; 
+                    ctxab.fillText("ENTRADA ACIONADA", 242, 18); //exibição do texto 
+
+                    ctxab.fillStyle="#FFFF00"; //cor amarela
+                    var lado = 25;
+                    var posicao = {x:600, y:27};
+                    ctxab.beginPath();                   
+                    ctxab.moveTo(posicao.x, posicao.y); //Ponto inicial do triangulo
+                    ctxab.lineTo(posicao.x+lado, posicao.y);
+                    ctxab.lineTo((posicao.x+lado/2), posicao.y-lado);
+                    ctxab.lineTo(posicao.x, posicao.y);
+                    ctxab.fill();
+                    ctxab.stroke();
+                    ctxab.font = '14px Arial';                           //tamanho e fonte do texto
+                    ctxab.fillStyle="black";                           
+                    ctxab.fillText("SAÍDA DESACIONADA", posicao.x+lado+5, posicao.y-5); //exibição do texto 
+
+                    ctxab.fillStyle="#B0E0E6"; //cor azul
+                    var lado = 25;
+                    var posicao = {x:800, y:27};
+                    ctxab.beginPath();                   
+                    ctxab.moveTo(posicao.x, posicao.y); //Ponto inicial do triangulo
+                    ctxab.lineTo(posicao.x+lado, posicao.y);
+                    ctxab.lineTo((posicao.x+lado/2), posicao.y-lado);
+                    ctxab.lineTo(posicao.x, posicao.y);
+                    ctxab.fill();
+                    ctxab.stroke();
+                    ctxab.font = '14px Arial';                           //tamanho e fonte do texto
+                    ctxab.fillStyle="black";                           
+                    ctxab.fillText("SAÍDA ACIONADA", posicao.x+lado+5, posicao.y-5); //exibição do texto 
+
 
             
         </script>
