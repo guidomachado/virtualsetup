@@ -422,6 +422,9 @@ $statuscoil = json_encode($statusc);
                     ctxab.fillStyle="black";                           
                     ctxab.fillText("SAÍDA ACIONADA", posicao.x+lado+5, posicao.y-5); //exibição do texto 
 
+                    setInterval("Desenhard();",250); 
+                    setInterval("Desenhare();",250); 
+
 
             
         </script>
