@@ -339,10 +339,12 @@ $statuscoil = json_encode($statusc);
                     ctxd.fillRect(posicao.x, posicao.y,50,50);          //criação do quadrado
                     ctxd.strokeRect(posicao.x, posicao.y,50,50);
                     ctxd.font = '14px Arial';                           //tamanho e fonte do texto
-                    ctxd.fillStyle="#F8F8FF";                           //cor roxo
+                    ctxd.fillStyle="black";                           //cor roxo
                     ctxd.fillText(texto[i], posicao.x+55, posicao.y+25); //exibição do texto 
+                    document.location.reload(true);
                     }
                 else{
+                    document.location.reload(false);
                     //ctxd.fillStyle="#FF0000";
                     //ctxd.fillRect(posicao.x, posicao.y,50,50);          //criação do quadrado
                     //ctxd.strokeRect(posicao.x, posicao.y,50,50);
@@ -361,11 +363,12 @@ $statuscoil = json_encode($statusc);
                     ctxe.fill();
                     ctxe.stroke();
                     ctxe.font = '14px Arial';                           //tamanho e fonte do texto
-                    ctxe.fillStyle="#4B0082";                           //cor roxo
+                    ctxe.fillStyle="black";                           //cor roxo
                     ctxe.fillText(txtout[i], posicao.x+lado+5, posicao.y-20); //exibição do texto   
-                    
+                    document.location.reload(true);
                     }
                 else{
+                    document.location.reload(false);
                     //ctxd.fillStyle="#FF0000";
                     //ctxd.fillRect(posicao.x, posicao.y,50,50);          //criação do quadrado
                     //ctxd.strokeRect(posicao.x, posicao.y,50,50);
@@ -422,8 +425,9 @@ $statuscoil = json_encode($statusc);
                     ctxab.fillStyle="black";                           
                     ctxab.fillText("SAÍDA ACIONADA", posicao.x+lado+5, posicao.y-5); //exibição do texto 
 
-                    setInterval("Desenhard();",250); 
-                    setInterval("Desenhare();",250); 
+                    
+                    //setInterval("Desenhard();",250); 
+                    //setInterval("Desenhare();",250); 
 
 
             
