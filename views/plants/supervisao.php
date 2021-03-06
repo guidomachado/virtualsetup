@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Plants', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
-$planta = Plants::findOne($model);
+$planta = Plants::findOne($model->Id);
 $nomes = array();
 
 if($planta->Entrada_0){$nomes[]='Entrada_0';$nomes[]="Status_M100";}
@@ -59,7 +59,7 @@ if($planta->Saída_19){$nomes[]='Saída_19';$nomes[]="Status_M139";}
 
 function actionActualize($model)
 {
-    $planta = Plants::findOne($model);
+    $planta = Plants::findOne($model->Id);
     return $planta;    
 }
 ?>
@@ -72,7 +72,7 @@ function actionActualize($model)
     <div id="time">
         <?php 
             //echo date('H:i:s');
-            $planta = actionActualize($model);    
+            //$planta = actionActualize($model);    
         ?>
         <?= DetailView::widget([
             'model' => $planta,

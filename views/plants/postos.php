@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Plants', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
-$planta = Plants::findOne($model);
+$planta = Plants::findOne($model->Id);
 $bt_start=null;
 
 //Encontrar BT_START

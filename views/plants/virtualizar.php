@@ -10,11 +10,12 @@ use yii\widgets\DetailView;
 use app\controllers\PlantsController;
 
 $this->title = 'Virtualização';
+$this->params['breadcrumbs'][] = ['label' => 'Plants', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 \yii\web\YiiAsset::register($this);
 
-$plantas = Plants::findOne($model);
+$plantas = Plants::findOne($model->Id);
 $nentrada = 0;
 $nsaida = 0;
 $nomesE = array();
