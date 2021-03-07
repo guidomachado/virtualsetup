@@ -129,7 +129,7 @@ class PlantsController extends Controller
             'model' => $model,
         ]);
     }
-
+//
     public function actionCriarposto($id)
     {
         $model = $this->findModel($id); 

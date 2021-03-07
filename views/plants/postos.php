@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Plants;
+use app\models\PlantsPostos;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\controllers\PlantsController;
@@ -14,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 $planta = Plants::findOne($model->Id);
+
 $bt_start=null;
 
 //Encontrar BT_START
@@ -39,31 +41,76 @@ if($planta->Entrada_18 == "Start"){$bt_start = $planta->Status_M118;}
 if($planta->Entrada_19 == "Start"){$bt_start = $planta->Status_M119;}
 
 $saidas = [];
-if($planta->Saída_0){$saidas[]=$planta->Status_M120;}
-if($planta->Saída_1){$saidas[]=$planta->Status_M121;}
-if($planta->Saída_2){$saidas[]=$planta->Status_M122;}
-if($planta->Saída_3){$saidas[]=$planta->Status_M123;}
-if($planta->Saída_4){$saidas[]=$planta->Status_M124;}
-if($planta->Saída_5){$saidas[]=$planta->Status_M125;}
-if($planta->Saída_6){$saidas[]=$planta->Status_M126;}
-if($planta->Saída_7){$saidas[]=$planta->Status_M127;}
-if($planta->Saída_8){$saidas[]=$planta->Status_M128;}
-if($planta->Saída_9){$saidas[]=$planta->Status_M129;}
-if($planta->Saída_10){$saidas[]=$planta->Status_M130;}
-if($planta->Saída_11){$saidas[]=$planta->Status_M131;}
-if($planta->Saída_12){$saidas[]=$planta->Status_M132;}
-if($planta->Saída_13){$saidas[]=$planta->Status_M133;}
-if($planta->Saída_14){$saidas[]=$planta->Status_M134;}
-if($planta->Saída_15){$saidas[]=$planta->Status_M135;}
-if($planta->Saída_16){$saidas[]=$planta->Status_M136;}
-if($planta->Saída_17){$saidas[]=$planta->Status_M137;}
-if($planta->Saída_18){$saidas[]=$planta->Status_M138;}
-if($planta->Saída_19){$saidas[]=$planta->Status_M139;}
+//if($planta->Saída_0){$plantaPostos->Status_M120=$planta->Status_M120;}
+function atualizaBd($id_postos,$id_principal)
+{
+    $planta = Plants::findOne($id_principal);
+    $plantaPostos = PlantsPostos::findOne($id_postos);
+    $plantaPostos->Status_M120=$planta->Status_M120;
+    $plantaPostos->Status_M121=$planta->Status_M121;
+    $plantaPostos->Status_M122=$planta->Status_M122;
+    $plantaPostos->Status_M123=$planta->Status_M123;
+    $plantaPostos->Status_M124=$planta->Status_M124;
+    $plantaPostos->Status_M125=$planta->Status_M125;
+    $plantaPostos->Status_M126=$planta->Status_M126;
+    $plantaPostos->Status_M127=$planta->Status_M127;
+    $plantaPostos->Status_M128=$planta->Status_M128;
+    $plantaPostos->Status_M129=$planta->Status_M129;
+    $plantaPostos->Status_M130=$planta->Status_M130;
+    $plantaPostos->Status_M131=$planta->Status_M131;
+    $plantaPostos->Status_M132=$planta->Status_M132;
+    $plantaPostos->Status_M133=$planta->Status_M133;
+    $plantaPostos->Status_M134=$planta->Status_M134;
+    $plantaPostos->Status_M135=$planta->Status_M135;
+    $plantaPostos->Status_M136=$planta->Status_M136;
+    $plantaPostos->Status_M137=$planta->Status_M137;
+    $plantaPostos->Status_M138=$planta->Status_M138;
+    $plantaPostos->Status_M139=$planta->Status_M139;
+    $plantaPostos->save();
+}
+//atualizar o banco para dois vetores locais
+function atualizar_bd_comparacao()
+{
+    $plantaPostos_status_prev = PlantsPostos::findOne(1);
+    $plantaPostos_status_atual = PlantsPostos::findOne(2);
+    if($plantaPostos_status_prev != $plantaPostos_status_atual)
+    {
+        print_r("teste diferente");
+    }
+}
+$plantaPostos = PlantsPostos::findOne(1);
+$check = $plantaPostos->Saída_0;
+if($check==1)
+{
+    atualizaBd(1,$model->Id);
+    $plantaPostos->Saída_0=2;
+    $plantaPostos->save();
+    print_r("2");
+    print_r($plantaPostos);
+}
+if($check==2)
+{
+    atualizaBd(2,$model->Id);
+    $plantaPostos->Saída_0=1;
+    $plantaPostos->save();
+    print_r("1");
+//comparação dos status
+    $check=3;
+}
+if($check==3)
+{
+    atualizar_bd_comparacao();
+    $check=0;
+    print_r("3");
+}    
+
+//$plantaPostos->Status_M120=1;
+//$plantaPostos->save();
 
 
 //$planta2 = Plants::find($model)->asArray()->all();
-$saidaN = $planta->Status_M100;
-$saidaO = $saidaN;
+//$saidaN = $planta->Status_M100;
+//$saidaO = $saidaN;
 //$js_array = json_encode($saidas);
 //echo(gettype($saidas[0]));
 //$saidaN = intval($saidas[0],10);//->getText());
@@ -149,7 +196,7 @@ function verif_status($status_atual,$init_processo,$tipo_ent_saida,$quant_io)
     print_r($control_flag);
 }
 
-$teste[]=array(1,0,0,1);
+//$teste[]=array(1,0,0,1);
 //verif_status($teste,0,0,4);
 //verif_status($teste,0,0,4);
 function levar_js($status_atual)
@@ -161,7 +208,7 @@ function levar_js($status_atual)
     }
     return $estado_atual;
 }
-$fjson = json_encode(levar_js($teste));
+//$fjson = json_encode(levar_js($teste));
 ?>
 
 
@@ -182,8 +229,9 @@ $fjson = json_encode(levar_js($teste));
             }
             */
             //print_r($saidas);
-            print_r($saidaO);
-            print_r($saidaN);
+            //print_r($plantaPostos);
+            //print_r($saidaO);
+            //print_r($saidaN);
             //print_r($planta2[0]);
             //echo date('H:i:s');
             //echo $bt_start;
@@ -204,9 +252,9 @@ $fjson = json_encode(levar_js($teste));
     </div> 
     
     <script>
-    var i, produtos, state = 0;
+    /*var i, produtos, state = 0;
     //recebe o objeto json do php
-    produtos = <?php echo $fjson; ?>;
+    produtos = <?php //echo $fjson; ?>;
 
     if (state == 0)
     {
@@ -223,6 +271,7 @@ $fjson = json_encode(levar_js($teste));
     //{
     //    alert("Nome: " + produtos[i] + "\nQuantidade: ");
     //}
+    */
     </script>
     
 
