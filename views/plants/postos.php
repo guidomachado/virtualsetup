@@ -72,6 +72,96 @@ $saidaO = $saidaN;
 //$saidaE = array();
 $a=0;
 
+//guido soprano
+//$configBd = mysqli_connect('virtualsetup.mysql.dbaas.com.br','virtualsetup','projetosuper','virtualsetup') or die('Erro ao conectar');
+//$sql = "SELECT * FROM plants";
+//$resultado_anterior = mysqli_query($configBd,$sql) or die('Erro ao conectar');
+
+//$status_anterior = $resultado_anterior['Status_M100'];
+function verif_status($status_atual,$init_processo,$tipo_ent_saida,$quant_io)
+{
+    static $control_posterior;
+    static $control_atual;
+    static $control_flag=0;
+    static $control_flag_fim=0;
+    static $posto;
+    static $guarda_posto=0;
+
+    if(($init_processo == 1) && ($tipo_ent_saida == 0))
+    {
+        print_r("pnp");
+        for($i1=0;$i1<sizeof($status_atual);$i1++)
+        {
+            //$status_atual[$i1] = 0;
+            $control_atual = $status_atual[$i1];
+        }
+    }
+    if(($init_processo == 1) && ($tipo_ent_saida == 1))
+    {
+        print_r("npn");
+        for($i1=0;$i1<sizeof($status_atual);$i1++)
+        {
+            //$status_atual[$i1] = 1;
+            $control_atual = $status_atual[$i1];
+        }
+    }
+    //yfgyih
+    if(($init_processo == 0) && ($control_flag == 0))
+    {
+        for($i1=0;$i1<sizeof($status_atual);$i1++)
+        {
+            $control_atual[$i1] = $status_atual[$i1];
+        }
+        $control_flag = 1;
+        print_r("1ooo");
+        $control_flag = 1;
+    }
+    else
+    {
+        
+        if(($init_processo == 0) && ($control_flag == 1))
+        {
+            print_r("eee");
+            for($i1=0;$i1<sizeof($status_atual);$i1++)
+            {
+                $control_posterior[$i1] = $status_atual[$i1];
+            }
+            print_r("2 vez");
+            $control_flag = 0;
+            $control_flag_fim=1;
+        }
+    }
+    if(($init_processo == 0) && ($control_flag_fim == 1))
+    {
+        for($i1=0;$i1<sizeof($status_atual);$i1++)
+        {
+            if($control_atual[$i1] == $control_posterior[$i1])
+            {
+                $posto[$i1] = $control_posterior[$i1];
+            }else{
+                $posto[$i1] = $control_posterior[$i1];
+                $guarda_posto =1;
+            }
+        }
+        $control_flag_fim=0;
+    }
+    if($guarda_posto == 1){return($posto);echo"go";}
+    print_r($control_flag);
+}
+
+$teste[]=array(1,0,0,1);
+//verif_status($teste,0,0,4);
+//verif_status($teste,0,0,4);
+function levar_js($status_atual)
+{
+    static $estado_atual = array();
+    for($i=0;$i<sizeof($status_atual);$i++)
+    {
+        $estado_atual = $status_atual[$i];
+    }
+    return $estado_atual;
+}
+$fjson = json_encode(levar_js($teste));
 ?>
 
 
@@ -113,16 +203,26 @@ $a=0;
         </div>
     </div> 
     
-    <script type="text/javascript">
-    setInterval("my_function();",1000); 
-    //setInterval("my_function();",1000); 
+    <script>
+    var i, produtos, state = 0;
+    //recebe o objeto json do php
+    produtos = <?php echo $fjson; ?>;
 
-    function my_function(){
-        $('#refresh').load(location.href + ' #time');
-        //var i = [];
-        //i = <?php echo json_encode($saidas);?>;
-        //document.getElementById("whereToPrint").innerHTML = JSON.stringify(i);
+    if (state == 0)
+    {
+        alert("1 vez");
+        state = 1;
+    }else {alert("2 vez");state = 2;}
+    if (state == 2)
+    {
+        alert("3 vez");
+        state = 0;
     }
+    
+    //for (i in produtos)
+    //{
+    //    alert("Nome: " + produtos[i] + "\nQuantidade: ");
+    //}
     </script>
     
 
