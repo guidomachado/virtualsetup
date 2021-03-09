@@ -139,7 +139,16 @@ class PlantsController extends Controller
             'model' => $model,
         ]);
     }
+//
+public function actionCriarposto2($id)
+{
+    $model = $this->findModel($id); 
 
+    
+    return $this->render('postos2', [
+        'model' => $model,
+    ]);
+}
     /**
      * Deletes an existing Plants model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
