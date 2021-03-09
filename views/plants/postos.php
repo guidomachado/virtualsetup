@@ -71,37 +71,60 @@ function atualizaBd($id_postos,$id_principal)
 //atualizar o banco para dois vetores locais
 function atualizar_bd_comparacao()
 {
+    $cont_dif=0;
     $plantaPostos_status_prev = PlantsPostos::findOne(1);
     $plantaPostos_status_atual = PlantsPostos::findOne(2);
-    if($plantaPostos_status_prev != $plantaPostos_status_atual)
+    if($plantaPostos_status_prev->Status_M120!=$plantaPostos_status_atual->Status_M120){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M121!=$plantaPostos_status_atual->Status_M121){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M122!=$plantaPostos_status_atual->Status_M122){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M123!=$plantaPostos_status_atual->Status_M123){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M124!=$plantaPostos_status_atual->Status_M124){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M125!=$plantaPostos_status_atual->Status_M125){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M126!=$plantaPostos_status_atual->Status_M126){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M127!=$plantaPostos_status_atual->Status_M127){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M128!=$plantaPostos_status_atual->Status_M128){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M129!=$plantaPostos_status_atual->Status_M129){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M130!=$plantaPostos_status_atual->Status_M130){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M131!=$plantaPostos_status_atual->Status_M131){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M132!=$plantaPostos_status_atual->Status_M132){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M133!=$plantaPostos_status_atual->Status_M133){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M134!=$plantaPostos_status_atual->Status_M134){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M135!=$plantaPostos_status_atual->Status_M135){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M136!=$plantaPostos_status_atual->Status_M136){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M137!=$plantaPostos_status_atual->Status_M137){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M138!=$plantaPostos_status_atual->Status_M138){$cont_dif++;}
+    if($plantaPostos_status_prev->Status_M139!=$plantaPostos_status_atual->Status_M139){$cont_dif++;}
+
+    if($cont_dif > 0)
     {
         print_r("teste diferente");
     }
 }
+
 $plantaPostos = PlantsPostos::findOne(1);
 $check = $plantaPostos->Saída_0;
 if($check==1)
 {
     atualizaBd(1,$model->Id);
-    $plantaPostos->Saída_0=2;
+    $plantaPostos->Saída_0='2';
     $plantaPostos->save();
-    print_r("2");
-    print_r($plantaPostos);
+    print_r("status_prev");
 }
 if($check==2)
 {
-    atualizaBd(2,$model->Id);
-    $plantaPostos->Saída_0=1;
-    $plantaPostos->save();
+    print_r("comparação");
+    atualizar_bd_comparacao();
     print_r("1");
 //comparação dos status
     $check=3;
 }
 if($check==3)
 {
-    atualizar_bd_comparacao();
+    atualizaBd(2,$model->Id);
+    $plantaPostos->Saída_0='1';
+    $plantaPostos->save();
     $check=0;
-    print_r("3");
+    print_r("status_atual");
 }    
 
 //$plantaPostos->Status_M120=1;
