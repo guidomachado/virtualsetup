@@ -56,7 +56,12 @@ if($planta->Saída_18){$StatusES[]="Status_M138";}
 if($planta->Saída_19){$StatusES[]="Status_M139";}
 
 ?>
+<div>
 
+<p>
+    <button onclick="stop(a)">Stop</button>
+</p> 
+</div>
 <!DOCTYPE html>
 <html>
     <head>
@@ -80,6 +85,7 @@ if($planta->Saída_19){$StatusES[]="Status_M139";}
         ctx1.fillRect(pos4.x,pos4.y,50,50);
         ctx1.fillRect(pos5.x,pos5.y,50,50);
         var int = 1;
+        var a =0;
         function next(i) {
             var canvas = document.getElementById('teladireita');
             var ctx = canvas.getContext('2d');
@@ -96,10 +102,13 @@ if($planta->Saída_19){$StatusES[]="Status_M139";}
             ctx.fillStyle = 'rgb(0, 0, 0)';
             ctx.fill();
         }
+        function stop(valor){a = 1;}
         setInterval("my_function();",1000); 
         function my_function(){
-            next(int);
-            $('#refresh').load(location.href + ' #time');
+            if(a==0){next(int);}
+            
+            
+            //$('#refresh').load(location.href + ' #time');
         }
         </script>
 
