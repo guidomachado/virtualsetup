@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PlantsSearch */
+/* @var $searchModel app\models\PlantsControlSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Plantas';
+$this->title = 'Plants';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="plants-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Criar Plantas', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Create Plants', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'Id',
+            'Id',
             'Nome_da_Planta',
             'IP_da_Planta',
-            //'Porta_de_Acesso',
-            //'Entrada_0',
+            'Porta_de_Acesso',
+            'Entrada_0',
             //'Status_M100',
             //'Entrada_1',
             //'Status_M101',
@@ -110,6 +110,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Status_M138',
             //'Saída_19',
             //'Status_M139',
+            //'aprendeu_planta',
+            //'Id_control',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

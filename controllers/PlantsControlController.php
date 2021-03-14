@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Plants;
+use app\models\PlantsControl;
 use app\models\PlantsControlSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PlantsController implements the CRUD actions for Plants model.
+ * PlantsControlController implements the CRUD actions for PlantsControl model.
  */
-class PlantsController extends Controller
+class PlantsControlController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,7 +30,7 @@ class PlantsController extends Controller
     }
 
     /**
-     * Lists all Plants models.
+     * Lists all PlantsControl models.
      * @return mixed
      */
     public function actionIndex()
@@ -45,7 +45,7 @@ class PlantsController extends Controller
     }
 
     /**
-     * Displays a single Plants model.
+     * Displays a single PlantsControl model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class PlantsController extends Controller
     }
 
     /**
-     * Creates a new Plants model.
+     * Creates a new PlantsControl model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Plants();
+        $model = new PlantsControl();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Id]);
@@ -76,7 +76,7 @@ class PlantsController extends Controller
     }
 
     /**
-     * Updates an existing Plants model.
+     * Updates an existing PlantsControl model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class PlantsController extends Controller
     }
 
     /**
-     * Deletes an existing Plants model.
+     * Deletes an existing PlantsControl model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,77 +109,16 @@ class PlantsController extends Controller
         return $this->redirect(['index']);
     }
 
-//______________________SVN___________________________-
-
-     /**
-     * teste de virtualização
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * 
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionVirtualizar($id)
-    {
-        $model = $this->findModel($id); 
-
-        
-        return $this->render('virtualizar', [
-            'model' => $model,
-        ]);
-        
-    }
-
     /**
-     * Supervisiona a planta escolhida.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionSupervise($id)
-    {
-        $model = $this->findModel($id); 
-
-        
-        return $this->render('supervisao', [
-            'model' => $model,
-        ]);
-    }
-//          svn
-    public function actionCriarposto($id)
-    {
-        $model = $this->findModel($id); 
-
-        
-        return $this->render('postos', [
-            'model' => $model,
-        ]);
-    }
-//
-public function actionCriarposto2($id)
-{
-    $model = $this->findModel($id); 
-
-    
-    return $this->render('postos2', [
-        'model' => $model,
-    ]);
-}
-
-
-
-
-
-
-    /**
-     * Finds the Plants model based on its primary key value.
+     * Finds the PlantsControl model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Plants the loaded model
+     * @return PlantsControl the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Plants::findOne($id)) !== null) {
+        if (($model = PlantsControl::findOne($id)) !== null) {
             return $model;
         }
 

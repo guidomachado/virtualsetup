@@ -183,6 +183,16 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'Status_M139') ?>
 
+    <?php // echo $form->field($model, 'aprendeu_planta') ?>
+
+    <?php // echo $form->field($model, 'Id_control') ?>
+
+    <?php // echo $form->field($model, 'Num_postos') ?>
+
+    <?php // echo $form->field($model, 'Quant_entradas') ?>
+
+    <?php // echo $form->field($model, 'Quant_saidas') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>

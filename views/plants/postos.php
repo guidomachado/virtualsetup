@@ -2,6 +2,7 @@
 
 use app\models\Plants;
 use app\models\PlantsPostos;
+use app\models\PlantsControl;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\controllers\PlantsController;
@@ -41,7 +42,11 @@ if($planta->Entrada_18 == "Start"){$bt_start = $planta->Status_M118;}
 if($planta->Entrada_19 == "Start"){$bt_start = $planta->Status_M119;}
 
 $saidas = [];
-//if($planta->Saída_0){$plantaPostos->Status_M120=$planta->Status_M120;}
+function reset_postos($id_principal)
+{
+    $plantaPostos = PlantsPostos::findOne($id_principal);
+    $plantaPostos->Saída_1 = 0;
+}
 function atualizaBd($id_postos,$id_principal)
 {
     $planta = Plants::findOne($id_principal);
@@ -69,9 +74,10 @@ function atualizaBd($id_postos,$id_principal)
     $plantaPostos->save();
 }
 //atualizar o banco para dois vetores locais
-function atualizar_bd_comparacao()
+function atualizar_bd_comparacao($id_principal)
 {
     $cont_dif=0;
+    $planta = Plants::findOne($id_principal);
     $plantaPostos_status_prev = PlantsPostos::findOne(1);
     $plantaPostos_status_atual = PlantsPostos::findOne(2);
     if($plantaPostos_status_prev->Status_M120!=$plantaPostos_status_atual->Status_M120){$cont_dif++;}
@@ -97,36 +103,129 @@ function atualizar_bd_comparacao()
 
     if($cont_dif > 0)
     {
-        print_r("teste diferente");
+        $check_num_postos = $planta->Num_postos;
+        $check_num_postos++;
+        $planta->save();
+        $novoposto = new PlantsPostos;
+        //$plantaPostos = PlantsPostos::findOne(1);
+        //$check_num_postos = $plantaPostos->Saída_1;
+        if($check_num_postos == 1){$novoposto->Nome_da_Planta = "Posto1";
+            $planta->Num_postos = '1';$check_num_postos =0;print_r('1');}
+        if($check_num_postos == 2){$novoposto->Nome_da_Planta = "Posto2";
+            $planta->Num_postos = '2';$check_num_postos =0;print_r('2');}
+        if($check_num_postos == 3){$novoposto->Nome_da_Planta = "Posto3";
+            $planta->Num_postos = '3';$check_num_postos =0;}
+        if($check_num_postos == 4){$novoposto->Nome_da_Planta = "Posto4";
+            $planta->Num_postos = '4';$check_num_postos =0;}
+        if($check_num_postos == 5){$novoposto->Nome_da_Planta = "Posto5";
+            $planta->Num_postos = '5';$check_num_postos =0;}
+            print_r($planta->Num_postos);
+            $planta->save();
+        
+        $novoposto->Status_M120 = $plantaPostos_status_prev->Status_M120;
+        $novoposto->Status_M121 = $plantaPostos_status_prev->Status_M121;
+        $novoposto->Status_M122 = $plantaPostos_status_prev->Status_M122;
+        $novoposto->Status_M123 = $plantaPostos_status_prev->Status_M123;
+        $novoposto->Status_M124 = $plantaPostos_status_prev->Status_M124;
+        $novoposto->Status_M125 = $plantaPostos_status_prev->Status_M125;
+        $novoposto->Status_M126 = $plantaPostos_status_prev->Status_M126;
+        $novoposto->Status_M127 = $plantaPostos_status_prev->Status_M127;
+        $novoposto->Status_M128 = $plantaPostos_status_prev->Status_M128;
+        $novoposto->Status_M129 = $plantaPostos_status_prev->Status_M129;
+        $novoposto->Status_M130 = $plantaPostos_status_prev->Status_M130;
+        $novoposto->Status_M131 = $plantaPostos_status_prev->Status_M131;
+        $novoposto->Status_M132 = $plantaPostos_status_prev->Status_M132;
+        $novoposto->Status_M133 = $plantaPostos_status_prev->Status_M133;
+        $novoposto->Status_M134 = $plantaPostos_status_prev->Status_M134;
+        $novoposto->Status_M135 = $plantaPostos_status_prev->Status_M135;
+        $novoposto->Status_M136 = $plantaPostos_status_prev->Status_M136;
+        $novoposto->Status_M137 = $plantaPostos_status_prev->Status_M137;
+        $novoposto->Status_M138 = $plantaPostos_status_prev->Status_M138;
+        $novoposto->Status_M139 = $plantaPostos_status_prev->Status_M139;
+        $novoposto->save();
+        $num_postos = $planta->Num_postos;
+        if($num_postos == 1)
+        {
+            $planta->Saída_19 = $novoposto->Id;
+            print_r("id guardado");
+        }
+        print_r("status diferente");
     }
+    else{print_r("status igual");}
 }
+// inicio do programa
+function exe($id_principal)
+{
+    $planta = Plants::findOne($id_principal);
+    //$Nome_da_Planta = $planta->Nome_da_Planta;
+    $check_aprendeu = $planta->aprendeu_planta;
+    //$plantaControl = new PlantsPostos;
+    //print_r($Nome_da_Planta);
+    //$plantaControl = PlantsControl::findOne(1);
+    //$check_postos = $plantaControl->Check_postos;
+    //print_r($check_postos);
+    //print_r('ceeeee');
+    if($check_aprendeu == '0')
+    {   
+        //$plantaControl = new PlantsControl;
+        //$plantaControl->Nome_da_Planta = $Nome_da_Planta;
+        //$plantaControl->Check_postos = 1;
+        $planta->aprendeu_planta = '1';
+        $planta->Id_control = '1';
+        $planta->Num_postos = '0';
+        
+        //$plantaControl->save();
+        //$planta->Id_control = $plantaControl->Id;
+        $planta->save();
+        $num_postos = $planta->Num_postos;
+        $check_aprendeu=$planta->aprendeu_planta;
+        //print_r($plantaControl);
+        print_r('vai para a fase 1 do aprendizado'); 
+    }
+    //$plantaPostos = PlantsPostos::findOne(1);
+    //$plantaPostos = PlantsPostos::findOne(1);
 
-$plantaPostos = PlantsPostos::findOne(1);
-$check = $plantaPostos->Saída_0;
-if($check==1)
-{
-    atualizaBd(1,$model->Id);
-    $plantaPostos->Saída_0='2';
-    $plantaPostos->save();
-    print_r("status_prev");
+    if($check_aprendeu == '1')
+    {      
+        $num_postos = $planta->Num_postos;
+        if($num_postos<5)
+        {
+            $num_postos = $planta->Num_postos;
+            $check = $planta->Id_control;
+            if($check==1)
+            {
+                atualizaBd(1,$id_principal);
+                $planta->Id_control ='2';
+                //$plantaPostos->save();
+                $planta->save();
+                print_r("status_prev");
+            }
+            if($check==2)
+            {
+                print_r("comparação");
+                atualizar_bd_comparacao($id_principal);
+                //comparação dos status
+                $check=3;
+            }
+            if($check==3)
+            {
+                atualizaBd(2,$id_principal);
+                $planta->Id_control='1';
+                //$plantaPostos->save();
+                $planta->save();
+                $check=0;
+                print_r("status_atual");
+            }
+        }else{$planta->aprendeu_planta=2;$planta->save();}// número máximo de postos criados.
+    } 
+    
+    if($check_aprendeu == '2')
+    {
+        //$planta->Id_control = '1';
+        //$planta->save();
+        print_r('Esta planta já está pronta para a visualização de postos'); 
+    }       
 }
-if($check==2)
-{
-    print_r("comparação");
-    atualizar_bd_comparacao();
-    print_r("1");
-//comparação dos status
-    $check=3;
-}
-if($check==3)
-{
-    atualizaBd(2,$model->Id);
-    $plantaPostos->Saída_0='1';
-    $plantaPostos->save();
-    $check=0;
-    print_r("status_atual");
-}    
-
 //$plantaPostos->Status_M120=1;
 //$plantaPostos->save();
 
@@ -251,8 +350,9 @@ function levar_js($status_atual)
                 }
             }
             */
+            exe($model->Id);
             //print_r($saidas);
-            //print_r($plantaPostos);
+            //print_r($check);
             //print_r($saidaO);
             //print_r($saidaN);
             //print_r($planta2[0]);
@@ -274,27 +374,12 @@ function levar_js($status_atual)
         </div>
     </div> 
     
-    <script>
-    /*var i, produtos, state = 0;
-    //recebe o objeto json do php
-    produtos = <?php //echo $fjson; ?>;
-
-    if (state == 0)
-    {
-        alert("1 vez");
-        state = 1;
-    }else {alert("2 vez");state = 2;}
-    if (state == 2)
-    {
-        alert("3 vez");
-        state = 0;
+    <script type="text/javascript">
+    setInterval("my_function();",250); 
+ 
+    function my_function(){
+        $('#refresh').load(location.href + ' #time');
     }
-    
-    //for (i in produtos)
-    //{
-    //    alert("Nome: " + produtos[i] + "\nQuantidade: ");
-    //}
-    */
     </script>
     
 

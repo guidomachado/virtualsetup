@@ -91,6 +91,11 @@ use Yii;
  * @property int|null $Status_M138
  * @property string|null $Saída_19
  * @property int|null $Status_M139
+ * @property int|null $aprendeu_planta
+ * @property int|null $Id_control
+ * @property int|null $Num_postos
+ * @property int|null $Quant_entradas
+ * @property int|null $Quant_saidas
  */
 class Plants extends \yii\db\ActiveRecord
 {
@@ -109,7 +114,7 @@ class Plants extends \yii\db\ActiveRecord
     {
         return [
             [['Nome_da_Planta', 'IP_da_Planta', 'Porta_de_Acesso'], 'required'],
-            [['Porta_de_Acesso', 'Status_M100', 'Status_M101', 'Status_M102', 'Status_M103', 'Status_M104', 'Status_M105', 'Status_M106', 'Status_M107', 'Status_M108', 'Status_M109', 'Status_M110', 'Status_M111', 'Status_M112', 'Status_M113', 'Status_M114', 'Status_M115', 'Status_M116', 'Status_M117', 'Status_M118', 'Status_M119', 'Status_M120', 'Status_M121', 'Status_M122', 'Status_M123', 'Status_M124', 'Status_M125', 'Status_M126', 'Status_M127', 'Status_M128', 'Status_M129', 'Status_M130', 'Status_M131', 'Status_M132', 'Status_M133', 'Status_M134', 'Status_M135', 'Status_M136', 'Status_M137', 'Status_M138', 'Status_M139'], 'integer'],
+            [['Porta_de_Acesso', 'Status_M100', 'Status_M101', 'Status_M102', 'Status_M103', 'Status_M104', 'Status_M105', 'Status_M106', 'Status_M107', 'Status_M108', 'Status_M109', 'Status_M110', 'Status_M111', 'Status_M112', 'Status_M113', 'Status_M114', 'Status_M115', 'Status_M116', 'Status_M117', 'Status_M118', 'Status_M119', 'Status_M120', 'Status_M121', 'Status_M122', 'Status_M123', 'Status_M124', 'Status_M125', 'Status_M126', 'Status_M127', 'Status_M128', 'Status_M129', 'Status_M130', 'Status_M131', 'Status_M132', 'Status_M133', 'Status_M134', 'Status_M135', 'Status_M136', 'Status_M137', 'Status_M138', 'Status_M139', 'aprendeu_planta', 'Id_control', 'Num_postos', 'Quant_entradas', 'Quant_saidas'], 'integer'],
             [['Nome_da_Planta', 'IP_da_Planta', 'Entrada_0', 'Entrada_1', 'Entrada_2', 'Entrada_3', 'Entrada_4', 'Entrada_5', 'Entrada_6', 'Entrada_7', 'Entrada_8', 'Entrada_9', 'Entrada_10', 'Entrada_11', 'Entrada_12', 'Entrada_13', 'Entrada_14', 'Entrada_15', 'Entrada_16', 'Entrada_17', 'Entrada_18', 'Entrada_19', 'Saída_0', 'Saída_1', 'Saída_2', 'Saída_3', 'Saída_4', 'Saída_5', 'Saída_6', 'Saída_7', 'Saída_8', 'Saída_9', 'Saída_10', 'Saída_11', 'Saída_12', 'Saída_13', 'Saída_14', 'Saída_15', 'Saída_16', 'Saída_17', 'Saída_18', 'Saída_19'], 'string', 'max' => 50],
         ];
     }
@@ -204,71 +209,11 @@ class Plants extends \yii\db\ActiveRecord
             'Status_M138' => 'Status M138',
             'Saída_19' => 'Saída 19',
             'Status_M139' => 'Status M139',
+            'aprendeu_planta' => 'Aprendeu Planta',
+            'Id_control' => 'Id Control',
+            'Num_postos' => 'Num Postos',
+            'Quant_entradas' => 'Quant Entradas',
+            'Quant_saidas' => 'Quant Saidas',
         ];
-    }
-
-    private static $validEntradas = array(
-        'Belt Conveyor Gate' => 'Belt Conveyor Gate',
-        'Capacitive Sensor' => 'Capacitive Sensor',
-        'Diffuse Sensor' => 'Diffuse Sensor',
-        'Inductive Sensor' => 'Inductive Sensor',
-        'Left Positioner Limit' => 'Left Positioner(Limit)',
-        'Left Positioner Clamped' => 'Left Positioner (Clamped)',
-        'Reset Button' => 'Reset Button',
-        'Retroreflective Sensor' => 'Retroreflective Sensor',
-        'Right Positioner' => 'Right Positioner',
-        'Start Button'=>'Start Button',
-        'Stop Button' => 'Stop Button',
-        'Pick Place Detected' => 'Pick Place (Detected)',
-        'Pick Place Moving X' => 'Pick Place (Moving X)',
-        'Pick Place Moving Z' => 'Pick Place (Moving Z)',
-    );
-
-    public static function getValidEntradas()
-    {
-        return self::$validEntradas;
-    }
-
-    public function getPropertyStatusForDisplayEntradas()
-    {
-        if (isset(self::$validEntradas[$this->entrada]))
-            return self::$validEntradas[$this->entrada];
-
-        return false;
-    }
-
-    private static $validSaidas = array(
-        'Belt Conveyor' => 'Belt Conveyor',
-        'Chain Transfer' => 'Chain Transfer',
-        'Left Positioner Clamp' => 'Left Positioner (Clamp)',
-        'Left Positioner Raise' => 'Left Positioner (Raise',
-        'Loading Conveyor' => 'Loading Conveyor',
-        'Pivot Arm Sorter Turn' => 'Pivot Arm Sorter Turn',
-        'Pivot Arm Sorter Belt+' => 'Pivot Arm Sorter Turn +',
-        'Emitter' => 'Emitter',
-        'Remover' => 'Remover',
-        'Esteira 2m' => 'Esteira 2m',
-        'Roller stop' =>'Roller Stop',
-        'Stack Light Red' => 'Stack Light Red',
-        'Stak Light Green' => 'Stack Light Green',
-        'Stack Light Yellow' => 'Stack Light Yellow',
-        'Start Button Light' => 'Start Button Light',
-        'Stop Button Light' => 'Stop Button Light',
-        'Pick Place X' => 'Pick Place X',
-        'Pick Place Z' => 'Pick Place Z',
-        'Pick Place Grab' => 'Pick Place (Grab)',
-    );
-
-    public static function getValidSaidas()
-    {
-        return self::$validSaidas;
-    }
-    
-    public function getPropertyStatusForDisplaySaidas()
-    {
-        if (isset(self::$validSaidas[$this->saida]))
-            return self::$validSaidas;
-        
-        return false;
     }
 }

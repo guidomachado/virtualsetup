@@ -7,9 +7,9 @@ use yii\data\ActiveDataProvider;
 use app\models\Plants;
 
 /**
- * PlantsSearch represents the model behind the search form of `app\models\Plants`.
+ * PlantsControlSearch represents the model behind the search form of `app\models\Plants`.
  */
-class PlantsSearch extends Plants
+class PlantsControlSearch extends Plants
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class PlantsSearch extends Plants
     public function rules()
     {
         return [
-            [['Id', 'Porta_de_Acesso', 'Status_M100', 'Status_M101', 'Status_M102', 'Status_M103', 'Status_M104', 'Status_M105', 'Status_M106', 'Status_M107', 'Status_M108', 'Status_M109', 'Status_M110', 'Status_M111', 'Status_M112', 'Status_M113', 'Status_M114', 'Status_M115', 'Status_M116', 'Status_M117', 'Status_M118', 'Status_M119', 'Status_M120', 'Status_M121', 'Status_M122', 'Status_M123', 'Status_M124', 'Status_M125', 'Status_M126', 'Status_M127', 'Status_M128', 'Status_M129', 'Status_M130', 'Status_M131', 'Status_M132', 'Status_M133', 'Status_M134', 'Status_M135', 'Status_M136', 'Status_M137', 'Status_M138', 'Status_M139', 'aprendeu_planta', 'Id_control', 'Num_postos', 'Quant_entradas', 'Quant_saidas'], 'integer'],
+            [['Id', 'Porta_de_Acesso', 'Status_M100', 'Status_M101', 'Status_M102', 'Status_M103', 'Status_M104', 'Status_M105', 'Status_M106', 'Status_M107', 'Status_M108', 'Status_M109', 'Status_M110', 'Status_M111', 'Status_M112', 'Status_M113', 'Status_M114', 'Status_M115', 'Status_M116', 'Status_M117', 'Status_M118', 'Status_M119', 'Status_M120', 'Status_M121', 'Status_M122', 'Status_M123', 'Status_M124', 'Status_M125', 'Status_M126', 'Status_M127', 'Status_M128', 'Status_M129', 'Status_M130', 'Status_M131', 'Status_M132', 'Status_M133', 'Status_M134', 'Status_M135', 'Status_M136', 'Status_M137', 'Status_M138', 'Status_M139', 'aprendeu_planta', 'Id_control'], 'integer'],
             [['Nome_da_Planta', 'IP_da_Planta', 'Entrada_0', 'Entrada_1', 'Entrada_2', 'Entrada_3', 'Entrada_4', 'Entrada_5', 'Entrada_6', 'Entrada_7', 'Entrada_8', 'Entrada_9', 'Entrada_10', 'Entrada_11', 'Entrada_12', 'Entrada_13', 'Entrada_14', 'Entrada_15', 'Entrada_16', 'Entrada_17', 'Entrada_18', 'Entrada_19', 'Saída_0', 'Saída_1', 'Saída_2', 'Saída_3', 'Saída_4', 'Saída_5', 'Saída_6', 'Saída_7', 'Saída_8', 'Saída_9', 'Saída_10', 'Saída_11', 'Saída_12', 'Saída_13', 'Saída_14', 'Saída_15', 'Saída_16', 'Saída_17', 'Saída_18', 'Saída_19'], 'safe'],
         ];
     }
@@ -102,9 +102,6 @@ class PlantsSearch extends Plants
             'Status_M139' => $this->Status_M139,
             'aprendeu_planta' => $this->aprendeu_planta,
             'Id_control' => $this->Id_control,
-            'Num_postos' => $this->Num_postos,
-            'Quant_entradas' => $this->Quant_entradas,
-            'Quant_saidas' => $this->Quant_saidas,
         ]);
 
         $query->andFilterWhere(['like', 'Nome_da_Planta', $this->Nome_da_Planta])

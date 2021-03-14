@@ -69,22 +69,22 @@ if($planta->Saída_19){$StatusES[]="Status_M139";}
     </head>
     <body>
         
-        <canvas id="teladireita" width="1000" height="600" style="border:1px solid #000000;"></canvas>
+        <canvas id="teladireita" width="1000" height="600" style="border:1px solid #000000;background-color:LightGrey;"></canvas>
 
         <script type="text/javascript">
         var canvas = document.getElementById("teladireita");
         var ctx1 = canvas.getContext("2d");
         var pos1 = {x:0,y:0};
-        var pos2 = {x:100,y:0};
-        var pos3 = {x:200,y:0};
-        var pos4 = {x:300,y:0};
-        var pos5 = {x:400,y:0};
+        var pos2 = {x:200,y:0};
+        var pos3 = {x:400,y:0};
+        var pos4 = {x:600,y:0};
+        var pos5 = {x:800,y:0};
         ctx1.fillStyle="#00FA9A";  //verde
-        ctx1.fillRect(pos1.x,pos1.y,50,50);
-        ctx1.fillRect(pos2.x,pos2.y,50,50);
-        ctx1.fillRect(pos3.x,pos3.y,50,50);
-        ctx1.fillRect(pos4.x,pos4.y,50,50);
-        ctx1.fillRect(pos5.x,pos5.y,50,50);
+        ctx1.fillRect(pos1.x,pos1.y,100,100);
+        ctx1.fillRect(pos2.x,pos2.y,100,100);
+        ctx1.fillRect(pos3.x,pos3.y,100,100);
+        ctx1.fillRect(pos4.x,pos4.y,100,100);
+        ctx1.fillRect(pos5.x,pos5.y,100,100);
         var int = 1;
         var a =1;
         function next(i) {
@@ -97,9 +97,9 @@ if($planta->Saída_19){$StatusES[]="Status_M139";}
             else{pos = pos5;i=1;pos_1 = pos4;}
             int = i;
             ctx.fillStyle = "#00FA9A";
-            ctx.fillRect(pos_1.x,pos_1.y,50,50);           
+            ctx.fillRect(pos_1.x,pos_1.y,100,100);           
             ctx.beginPath();
-            ctx.arc(pos.x+25, pos.y+25, 10, 0, Math.PI * 2, true); // Outer circle
+            ctx.arc(pos.x+50, pos.y+50, 20, 0, Math.PI * 2, true); // Outer circle
             ctx.fillStyle = 'rgb(0, 0, 0)';
             ctx.fill();
         }
