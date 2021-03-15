@@ -165,7 +165,15 @@ public function actionCriarposto2($id)
     ]);
 }
 
+public function actionVisualizarpostos($id)
+{
+    $model = $this->findModel($id); 
 
+    
+    return $this->render('visualizar_postos', [
+        'model' => $model,
+    ]);
+}
 
 
 
