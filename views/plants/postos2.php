@@ -3,6 +3,7 @@
 use app\models\Plants;
 use yii\helpers\Html;
 use app\controllers\PlantsController;
+use app\models\PlantsPostos;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Plants */
@@ -54,7 +55,10 @@ if($planta->Saída_16){$StatusES[]="Status_M136";}
 if($planta->Saída_17){$StatusES[]="Status_M137";}
 if($planta->Saída_18){$StatusES[]="Status_M138";}
 if($planta->Saída_19){$StatusES[]="Status_M139";}
-
+$sql = "SELECT * FROM plants_postos ORDER BY id DESC LIMIT 1;";
+$command = Yii::$app->db->createCommand($sql);
+$count = $command->queryScalar();
+print_r($count);
 ?>
 <div>
 
@@ -108,13 +112,8 @@ if($planta->Saída_19){$StatusES[]="Status_M139";}
         setInterval("my_function();",1000); 
         function my_function(){
             if(a==0){next(int);}
-            
-            
             //$('#refresh').load(location.href + ' #time');
         }
         </script>
-
     </body>
-
 </html>
-

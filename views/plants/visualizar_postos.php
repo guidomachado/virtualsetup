@@ -3,6 +3,7 @@
 use app\models\Plants;
 use yii\helpers\Html;
 use app\controllers\PlantsController;
+use app\models\PlantsPostos;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Plants */
@@ -11,8 +12,37 @@ $this->title = 'Virtualização';
 $this->params['breadcrumbs'][] = ['label' => 'Plants', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$planta = Plants::findOne($model);
-//$StatusES = array();
+$planta = Plants::findOne($model->Id);
+
+$id_inicial_ = $planta->Id_control_inicial;
+$numero_postos = $planta->Num_postos;
+$postos_teste = array();
+
+for($i =0;$i<$numero_postos;$i++){
+    $postox = PlantsPostos::findOne($id_inicial_+$i);
+    $matriz_saidas = array();
+    $matriz_saidas[0] = $postox->Status_M120;
+    $matriz_saidas[1] = $postox->Status_M121;
+    $matriz_saidas[2] = $postox->Status_M122;
+    $matriz_saidas[3] = $postox->Status_M123;
+    $matriz_saidas[4] = $postox->Status_M124;
+    $matriz_saidas[5] = $postox->Status_M125;
+    $matriz_saidas[6] = $postox->Status_M126;
+    $matriz_saidas[7] = $postox->Status_M127;
+    $matriz_saidas[8] = $postox->Status_M128;
+    $matriz_saidas[9] = $postox->Status_M129;
+    $matriz_saidas[10] = $postox->Status_M130;
+    $matriz_saidas[11] = $postox->Status_M131;
+    $matriz_saidas[12] = $postox->Status_M132;
+    $matriz_saidas[13] = $postox->Status_M133;
+    $matriz_saidas[14] = $postox->Status_M134;
+    $matriz_saidas[15] = $postox->Status_M135;
+    $matriz_saidas[16] = $postox->Status_M136;
+    $matriz_saidas[17] = $postox->Status_M137;
+    $matriz_saidas[18] = $postox->Status_M138;
+    $matriz_saidas[19] = $postox->Status_M139;
+    $postos_teste[$i] = $matriz_saidas;
+}
 
 ?>
 <div>
@@ -48,7 +78,8 @@ $planta = Plants::findOne($model);
         ctx_l.fillText('Produto', 580, 50); //exibição do texto 
 
         //Criar postos automaticamente
-        var num_postos = 10;
+        //var num_postos = 10;
+        var num_postos = <?php echo $numero_postos; ?>;
         var postos =[
             {x:50,y:50},{x:250,y:50},{x:450,y:50},{x:650,y:50},{x:850,y:50},
             {x:50,y:250},{x:250,y:250},{x:450,y:250},{x:650,y:250},{x:850,y:250},
@@ -73,7 +104,7 @@ $planta = Plants::findOne($model);
         }
 
         var posto_proximo = 0;
-        var posto_anterior = 7;
+        var posto_anterior = 1;
 
         function rend_posto(){
             prox_pos = posto_proximo;
@@ -89,10 +120,45 @@ $planta = Plants::findOne($model);
         }
 
         rend_posto();
-        setInterval("my_function();",1000); 
+        setInterval("my_function();",250); 
         function my_function(){
-            posto_proximo++;
-            if(posto_proximo == num_postos){posto_proximo=0;}
+            
+            <?php
+            
+            $posto_atual = Plants::findOne($model->Id);
+            $matriz_atual = array();
+            $matriz_atual[0] = $posto_atual->Status_M120;
+            $matriz_atual[1] = $posto_atual->Status_M121;
+            $matriz_atual[2] = $posto_atual->Status_M122;
+            $matriz_atual[3] = $posto_atual->Status_M123;
+            $matriz_atual[4] = $posto_atual->Status_M124;
+            $matriz_atual[5] = $posto_atual->Status_M125;
+            $matriz_atual[6] = $posto_atual->Status_M126;
+            $matriz_atual[7] = $posto_atual->Status_M127;
+            $matriz_atual[8] = $posto_atual->Status_M128;
+            $matriz_atual[9] = $posto_atual->Status_M129;
+            $matriz_atual[10] = $posto_atual->Status_M130;
+            $matriz_atual[11] = $posto_atual->Status_M131;
+            $matriz_atual[12] = $posto_atual->Status_M132;
+            $matriz_atual[13] = $posto_atual->Status_M133;
+            $matriz_atual[14] = $posto_atual->Status_M134;
+            $matriz_atual[15] = $posto_atual->Status_M135;
+            $matriz_atual[16] = $posto_atual->Status_M136;
+            $matriz_atual[17] = $posto_atual->Status_M137;
+            $matriz_atual[18] = $posto_atual->Status_M138;
+            $matriz_atual[19] = $posto_atual->Status_M139;
+            
+            $posto_atual = 0;
+            for($i =0;$i<sizeof($matriz_saidas);$i++){
+                if($matriz_atual == $matriz_saidas[$i]){
+                    $posto_atual = $i+1;
+                }
+            }
+            
+            ?>
+            posto_proximo = <?php echo $posto_atual; ?>;
+            //posto_proximo++;
+            //if(posto_proximo == num_postos){posto_proximo=0;}
             rend_posto();   
         }
         </script>

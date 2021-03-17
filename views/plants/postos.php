@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $planta = Plants::findOne($model->Id);
 
+/*
 $bt_start=null;
 
 //Encontrar BT_START
@@ -42,11 +43,14 @@ if($planta->Entrada_18 == "Start"){$bt_start = $planta->Status_M118;}
 if($planta->Entrada_19 == "Start"){$bt_start = $planta->Status_M119;}
 
 $saidas = [];
+*/
+/*
 function reset_postos($id_principal)
 {
     $plantaPostos = PlantsPostos::findOne($id_principal);
     $plantaPostos->Saída_1 = 0;
 }
+*/
 function atualizaBd($id_postos,$id_principal)
 {
     $planta = Plants::findOne($id_principal);
@@ -146,7 +150,13 @@ function atualizar_bd_comparacao($id_principal)
         $num_postos = $planta->Num_postos;
         if($num_postos == 1)
         {
-            $planta->Saída_19 = $novoposto->Id;
+            //$sql = "SELECT * FROM plants_postos ORDER BY id DESC LIMIT 1";
+            $sql = "SELECT * FROM plants_postos ORDER BY id DESC LIMIT 1;";
+            $command = Yii::$app->db->createCommand($sql);
+            $count = $command->queryScalar();
+            //print_r($count);
+            $planta->Id_control_inicial = $count;
+            //$planta->Saída_19 = $novoposto->Id;
             print_r("id guardado");
         }
         print_r("status diferente");
@@ -239,7 +249,7 @@ function exe($id_principal)
 //print_r($saidaN);
 //$saidaE = [$planta->Status_M120+1];
 //$saidaE = array();
-$a=0;
+//$a=0;
 
 //guido soprano
 //$configBd = mysqli_connect('virtualsetup.mysql.dbaas.com.br','virtualsetup','projetosuper','virtualsetup') or die('Erro ao conectar');
@@ -247,6 +257,7 @@ $a=0;
 //$resultado_anterior = mysqli_query($configBd,$sql) or die('Erro ao conectar');
 
 //$status_anterior = $resultado_anterior['Status_M100'];
+/*
 function verif_status($status_atual,$init_processo,$tipo_ent_saida,$quant_io)
 {
     static $control_posterior;
@@ -317,10 +328,11 @@ function verif_status($status_atual,$init_processo,$tipo_ent_saida,$quant_io)
     if($guarda_posto == 1){return($posto);echo"go";}
     print_r($control_flag);
 }
-
+*/
 //$teste[]=array(1,0,0,1);
 //verif_status($teste,0,0,4);
 //verif_status($teste,0,0,4);
+/*
 function levar_js($status_atual)
 {
     static $estado_atual = array();
@@ -330,6 +342,7 @@ function levar_js($status_atual)
     }
     return $estado_atual;
 }
+*/
 //$fjson = json_encode(levar_js($teste));
 ?>
 
