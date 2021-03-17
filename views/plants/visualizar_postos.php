@@ -43,7 +43,7 @@ for($i =0;$i<$numero_postos;$i++){
     $matriz_saidas[19] = $postox->Status_M139;
     $postos_teste[$i] = $matriz_saidas;
 }
-
+//print_r($postos_teste);
 ?>
 <div>
     <h1>Visualização dos Postos</h1>
@@ -53,7 +53,44 @@ for($i =0;$i<$numero_postos;$i++){
     <head>
     </head>
     <body>
-        
+    <div class="plants-view">
+    
+    <div id="refresh">
+        <div id="time">
+            <?php 
+                        
+            $posto_atual = Plants::findOne($model->Id);
+            $matriz_atual = array();
+            $matriz_atual[0] = $posto_atual->Status_M120;
+            $matriz_atual[1] = $posto_atual->Status_M121;
+            $matriz_atual[2] = $posto_atual->Status_M122;
+            $matriz_atual[3] = $posto_atual->Status_M123;
+            $matriz_atual[4] = $posto_atual->Status_M124;
+            $matriz_atual[5] = $posto_atual->Status_M125;
+            $matriz_atual[6] = $posto_atual->Status_M126;
+            $matriz_atual[7] = $posto_atual->Status_M127;
+            $matriz_atual[8] = $posto_atual->Status_M128;
+            $matriz_atual[9] = $posto_atual->Status_M129;
+            $matriz_atual[10] = $posto_atual->Status_M130;
+            $matriz_atual[11] = $posto_atual->Status_M131;
+            $matriz_atual[12] = $posto_atual->Status_M132;
+            $matriz_atual[13] = $posto_atual->Status_M133;
+            $matriz_atual[14] = $posto_atual->Status_M134;
+            $matriz_atual[15] = $posto_atual->Status_M135;
+            $matriz_atual[16] = $posto_atual->Status_M136;
+            $matriz_atual[17] = $posto_atual->Status_M137;
+            $matriz_atual[18] = $posto_atual->Status_M138;
+            $matriz_atual[19] = $posto_atual->Status_M139;
+            
+            $posto_atual = 0;
+            for($i =0;$i<sizeof($postos_teste);$i++){
+                if($matriz_atual == $postos_teste[$i]){
+                    $posto_atual = $i;
+                }
+            }
+            ?>        
+        </div>
+    </div>         
         <canvas id="Tela" width="1000" height="850" style="border:8px dashed #000000; background-color:LightGrey;"></canvas>
         <canvas id="Legenda" width="1000" height="100" style="border:4px dashed #FF0000; background-color:LightGrey;"></canvas>
 
@@ -103,7 +140,7 @@ for($i =0;$i<$numero_postos;$i++){
             ctx.fillText(nomes[i], postos_usados[i].x+15, postos_usados[i].y+125); //exibição do texto 
         }
 
-        var posto_proximo = 0;
+        var posto_proximo = <?php echo $posto_atual?>;
         var posto_anterior = 1;
 
         function rend_posto(){
@@ -120,11 +157,13 @@ for($i =0;$i<$numero_postos;$i++){
         }
 
         rend_posto();
+        document.location.reload(true);
+        /*
         setInterval("my_function();",250); 
         function my_function(){
             
             <?php
-            
+            /*
             $posto_atual = Plants::findOne($model->Id);
             $matriz_atual = array();
             $matriz_atual[0] = $posto_atual->Status_M120;
@@ -149,18 +188,20 @@ for($i =0;$i<$numero_postos;$i++){
             $matriz_atual[19] = $posto_atual->Status_M139;
             
             $posto_atual = 0;
-            for($i =0;$i<sizeof($matriz_saidas);$i++){
-                if($matriz_atual == $matriz_saidas[$i]){
-                    $posto_atual = $i+1;
+            for($i =0;$i<sizeof($postos_teste);$i++){
+                if($matriz_atual == $postos_teste[$i]){
+                    $posto_atual = $i;
                 }
             }
-            
+            */
             ?>
-            posto_proximo = <?php echo $posto_atual; ?>;
+            posto_proximo = <?php //echo $posto_atual; ?>;
             //posto_proximo++;
             //if(posto_proximo == num_postos){posto_proximo=0;}
             rend_posto();   
+            $('#refresh').load(location.href + ' #time');
         }
+        */
         </script>
 
     </body>

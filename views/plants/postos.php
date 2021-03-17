@@ -80,10 +80,23 @@ function atualizaBd($id_postos,$id_principal)
 //atualizar o banco para dois vetores locais
 function atualizar_bd_comparacao($id_principal)
 {
+    static $primeiro_posto=0;
     $cont_dif=0;
     $planta = Plants::findOne($id_principal);
-    $plantaPostos_status_prev = PlantsPostos::findOne(1);
-    $plantaPostos_status_atual = PlantsPostos::findOne(2);
+    
+    $numero_postos = $planta->Num_postos;
+    if($numero_postos==0){
+        $plantaPostos_status_prev = PlantsPostos::findOne(1);
+        $plantaPostos_status_atual = PlantsPostos::findOne(2);
+    }
+    else{
+        $sql = "SELECT * FROM plants_postos ORDER BY id DESC LIMIT 1;";
+        $command = Yii::$app->db->createCommand($sql);
+        $ult_posto = $command->queryScalar();
+
+        $plantaPostos_status_prev = PlantsPostos::findOne(1);
+        $plantaPostos_status_atual = PlantsPostos::findOne($ult_posto);
+    }
     if($plantaPostos_status_prev->Status_M120!=$plantaPostos_status_atual->Status_M120){$cont_dif++;}
     if($plantaPostos_status_prev->Status_M121!=$plantaPostos_status_atual->Status_M121){$cont_dif++;}
     if($plantaPostos_status_prev->Status_M122!=$plantaPostos_status_atual->Status_M122){$cont_dif++;}
@@ -156,6 +169,7 @@ function atualizar_bd_comparacao($id_principal)
             $count = $command->queryScalar();
             //print_r($count);
             $planta->Id_control_inicial = $count;
+            $planta->save();
             //$planta->Saída_19 = $novoposto->Id;
             print_r("id guardado");
         }
@@ -175,7 +189,7 @@ function exe($id_principal)
     //$check_postos = $plantaControl->Check_postos;
     //print_r($check_postos);
     //print_r('ceeeee');
-    if($check_aprendeu == '0')
+    if(($check_aprendeu == '0')|| ($check_aprendeu == null))
     {   
         //$plantaControl = new PlantsControl;
         //$plantaControl->Nome_da_Planta = $Nome_da_Planta;
@@ -198,7 +212,8 @@ function exe($id_principal)
     if($check_aprendeu == '1')
     {      
         $num_postos = $planta->Num_postos;
-        if($num_postos<5)
+        $num_saidas = $planta->Quant_saidas;
+        if($num_postos<$num_saidas)
         {
             $num_postos = $planta->Num_postos;
             $check = $planta->Id_control;
@@ -209,6 +224,7 @@ function exe($id_principal)
                 //$plantaPostos->save();
                 $planta->save();
                 print_r("status_prev");
+                $check =2;
             }
             if($check==2)
             {
@@ -388,7 +404,7 @@ function levar_js($status_atual)
     </div> 
     
     <script type="text/javascript">
-    setInterval("my_function();",250); 
+    setInterval("my_function();",200); 
  
     function my_function(){
         $('#refresh').load(location.href + ' #time');

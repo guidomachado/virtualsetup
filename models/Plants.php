@@ -96,7 +96,7 @@ use Yii;
  * @property int|null $Num_postos
  * @property int|null $Quant_entradas
  * @property int|null $Quant_saidas
- * @property int $Id_control_inicial
+ * @property int|null $Id_control_inicial
  */
 class Plants extends \yii\db\ActiveRecord
 {
