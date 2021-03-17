@@ -188,6 +188,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Quant_saidas')->textInput() ?>
 
+    <?= $form->field($model, 'Id_control_inicial')->textInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
