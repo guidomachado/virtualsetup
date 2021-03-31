@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Plants */
 
-$this->title = 'Create Plants';
+$this->title = 'Criar Plantas';
 $this->params['breadcrumbs'][] = ['label' => 'Plants', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

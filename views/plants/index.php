@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PlantsControlSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Plants';
+$this->title = 'Plantas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="plants-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Plants', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Plantas', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'Id',
             'Nome_da_Planta',
             'IP_da_Planta',
-            'Porta_de_Acesso',
-            'Entrada_0',
+            //'Porta_de_Acesso',
+            //'Entrada_0',
             //'Status_M100',
             //'Entrada_1',
             //'Status_M101',
