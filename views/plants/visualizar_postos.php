@@ -61,16 +61,16 @@ for($i =0;$i<$numero_postos;$i++){
                         
             $posto_atual = Plants::findOne($model->Id);
             $matriz_atual = array();
-            $matriz_atual[0] = $posto_atual->Status_M120;
-            $matriz_atual[1] = $posto_atual->Status_M121;
-            $matriz_atual[2] = $posto_atual->Status_M122;
-            $matriz_atual[3] = $posto_atual->Status_M123;
-            $matriz_atual[4] = $posto_atual->Status_M124;
-            $matriz_atual[5] = $posto_atual->Status_M125;
-            $matriz_atual[6] = $posto_atual->Status_M126;
-            $matriz_atual[7] = $posto_atual->Status_M127;
-            $matriz_atual[8] = $posto_atual->Status_M128;
-            $matriz_atual[9] = $posto_atual->Status_M129;
+            $matriz_atual[0]  = $posto_atual->Status_M120;
+            $matriz_atual[1]  = $posto_atual->Status_M121;
+            $matriz_atual[2]  = $posto_atual->Status_M122;
+            $matriz_atual[3]  = $posto_atual->Status_M123;
+            $matriz_atual[4]  = $posto_atual->Status_M124;
+            $matriz_atual[5]  = $posto_atual->Status_M125;
+            $matriz_atual[6]  = $posto_atual->Status_M126;
+            $matriz_atual[7]  = $posto_atual->Status_M127;
+            $matriz_atual[8]  = $posto_atual->Status_M128;
+            $matriz_atual[9]  = $posto_atual->Status_M129;
             $matriz_atual[10] = $posto_atual->Status_M130;
             $matriz_atual[11] = $posto_atual->Status_M131;
             $matriz_atual[12] = $posto_atual->Status_M132;
@@ -82,10 +82,21 @@ for($i =0;$i<$numero_postos;$i++){
             $matriz_atual[18] = $posto_atual->Status_M138;
             $matriz_atual[19] = $posto_atual->Status_M139;
             
-            $posto_atual = 0;
+            $posto_a = 0;
             for($i =0;$i<sizeof($postos_teste);$i++){
                 if($matriz_atual == $postos_teste[$i]){
-                    $posto_atual = $i;
+                    if($i!=9){
+                    $posto_a = $i;
+                    }
+                    else{
+                        $a123 = $posto_atual->Status_M101;
+                        if($a123 ==1){
+                            $posto_a = 9;
+                        }
+                        else{
+                            $posto_a = 0;
+                        }
+                    }
                 }
             }
             ?>        
@@ -140,7 +151,7 @@ for($i =0;$i<$numero_postos;$i++){
             ctx.fillText(nomes[i], postos_usados[i].x+15, postos_usados[i].y+125); //exibição do texto 
         }
 
-        var posto_proximo = <?php echo $posto_atual?>;
+        var posto_proximo = <?php echo $posto_a?>;
         var posto_anterior = 1;
 
         function rend_posto(){
