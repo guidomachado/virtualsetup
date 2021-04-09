@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Virtualizar', ['virtualizar','id' => $model->Id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Supervisão da Planta', ['supervise', 'id' => $model->Id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Criar Postos', ['criarposto', 'id' => $model->Id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Criar Postos2', ['criarposto2', 'id' => $model->Id], ['class' => 'btn btn-primary']) ?>
+        
         <?= Html::a('Visualizar Postos', ['visualizarpostos', 'id' => $model->Id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->Id], [
             'class' => 'btn btn-danger',
@@ -120,6 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Status_M139',
             'aprendeu_planta',
             'Id_control',
+            'Num_postos',
             'Quant_entradas',
             'Quant_saidas',
             'Id_control_inicial',

@@ -39,6 +39,7 @@ if($planta->Saída_17){$numero_saidas++;}
 if($planta->Saída_18){$numero_saidas++;}
 if($planta->Saída_19){$numero_saidas++;}
 
+//$planta->Id_control = 0;
 $planta->Quant_saidas = $numero_saidas;
 $planta->save();
 //atualizar o banco para dois vetores locais
@@ -79,6 +80,105 @@ function atualizar_bd_comparacao($id_principal)
     if($planta->Status_M138!=$plantaPostos_status_atual->Status_M138){$cont_dif++;}
     if($planta->Status_M139!=$plantaPostos_status_atual->Status_M139){$cont_dif++;}
 
+    $primeiroid = $planta->Id_control_inicial;
+    $cont_dif2 = 0;
+    $cont_dif3 = 0;
+    $verifica_postos = $planta->Id_control;
+    //print_r($planta->Id_control);
+    if($numero_postos>0){
+        if($verifica_postos == 0){
+            $plantaPostos_primeiro = PlantsPostos::findOne($primeiroid);
+            if($planta->Status_M120!=$plantaPostos_primeiro->Status_M120){$cont_dif2++;}
+            if($planta->Status_M121!=$plantaPostos_primeiro->Status_M121){$cont_dif2++;}
+            if($planta->Status_M122!=$plantaPostos_primeiro->Status_M122){$cont_dif2++;}
+            if($planta->Status_M123!=$plantaPostos_primeiro->Status_M123){$cont_dif2++;}
+            if($planta->Status_M124!=$plantaPostos_primeiro->Status_M124){$cont_dif2++;}
+            if($planta->Status_M125!=$plantaPostos_primeiro->Status_M125){$cont_dif2++;}
+            if($planta->Status_M126!=$plantaPostos_primeiro->Status_M126){$cont_dif2++;}
+            if($planta->Status_M127!=$plantaPostos_primeiro->Status_M127){$cont_dif2++;}
+            if($planta->Status_M128!=$plantaPostos_primeiro->Status_M128){$cont_dif2++;}
+            if($planta->Status_M129!=$plantaPostos_primeiro->Status_M129){$cont_dif2++;}
+            if($planta->Status_M130!=$plantaPostos_primeiro->Status_M130){$cont_dif2++;}
+            if($planta->Status_M131!=$plantaPostos_primeiro->Status_M131){$cont_dif2++;}
+            if($planta->Status_M132!=$plantaPostos_primeiro->Status_M132){$cont_dif2++;}
+            if($planta->Status_M133!=$plantaPostos_primeiro->Status_M133){$cont_dif2++;}
+            if($planta->Status_M134!=$plantaPostos_primeiro->Status_M134){$cont_dif2++;}
+            if($planta->Status_M135!=$plantaPostos_primeiro->Status_M135){$cont_dif2++;}
+            if($planta->Status_M136!=$plantaPostos_primeiro->Status_M136){$cont_dif2++;}
+            if($planta->Status_M137!=$plantaPostos_primeiro->Status_M137){$cont_dif2++;}
+            if($planta->Status_M138!=$plantaPostos_primeiro->Status_M138){$cont_dif2++;}
+            if($planta->Status_M139!=$plantaPostos_primeiro->Status_M139){$cont_dif2++;}
+            if($cont_dif2==0){
+                //echo('igual ao posto 1<br>');
+                $planta->Id_control ='1';
+                $planta->save();
+                //print_r($planta->Id_control);
+            }
+        }
+        elseif($numero_postos>1){
+            //echo('fase 2<br>');
+            $novoid = $primeiroid;
+            $novoid++;
+            $plantaPostos_segundo = PlantsPostos::findOne($primeiroid+1);
+            $plantaPostos_primeiro = PlantsPostos::findOne($primeiroid);
+            if($planta->Status_M120!=$plantaPostos_primeiro->Status_M120){$cont_dif2++;}
+            if($planta->Status_M121!=$plantaPostos_primeiro->Status_M121){$cont_dif2++;}
+            if($planta->Status_M122!=$plantaPostos_primeiro->Status_M122){$cont_dif2++;}
+            if($planta->Status_M123!=$plantaPostos_primeiro->Status_M123){$cont_dif2++;}
+            if($planta->Status_M124!=$plantaPostos_primeiro->Status_M124){$cont_dif2++;}
+            if($planta->Status_M125!=$plantaPostos_primeiro->Status_M125){$cont_dif2++;}
+            if($planta->Status_M126!=$plantaPostos_primeiro->Status_M126){$cont_dif2++;}
+            if($planta->Status_M127!=$plantaPostos_primeiro->Status_M127){$cont_dif2++;}
+            if($planta->Status_M128!=$plantaPostos_primeiro->Status_M128){$cont_dif2++;}
+            if($planta->Status_M129!=$plantaPostos_primeiro->Status_M129){$cont_dif2++;}
+            if($planta->Status_M130!=$plantaPostos_primeiro->Status_M130){$cont_dif2++;}
+            if($planta->Status_M131!=$plantaPostos_primeiro->Status_M131){$cont_dif2++;}
+            if($planta->Status_M132!=$plantaPostos_primeiro->Status_M132){$cont_dif2++;}
+            if($planta->Status_M133!=$plantaPostos_primeiro->Status_M133){$cont_dif2++;}
+            if($planta->Status_M134!=$plantaPostos_primeiro->Status_M134){$cont_dif2++;}
+            if($planta->Status_M135!=$plantaPostos_primeiro->Status_M135){$cont_dif2++;}
+            if($planta->Status_M136!=$plantaPostos_primeiro->Status_M136){$cont_dif2++;}
+            if($planta->Status_M137!=$plantaPostos_primeiro->Status_M137){$cont_dif2++;}
+            if($planta->Status_M138!=$plantaPostos_primeiro->Status_M138){$cont_dif2++;}
+            if($planta->Status_M139!=$plantaPostos_primeiro->Status_M139){$cont_dif2++;}
+            if($planta->Status_M120!=$plantaPostos_segundo->Status_M120){$cont_dif3++;}
+            if($planta->Status_M121!=$plantaPostos_segundo->Status_M121){$cont_dif3++;}
+            if($planta->Status_M122!=$plantaPostos_segundo->Status_M122){$cont_dif3++;}
+            if($planta->Status_M123!=$plantaPostos_segundo->Status_M123){$cont_dif3++;}
+            if($planta->Status_M124!=$plantaPostos_segundo->Status_M124){$cont_dif3++;}
+            if($planta->Status_M125!=$plantaPostos_segundo->Status_M125){$cont_dif3++;}
+            if($planta->Status_M126!=$plantaPostos_segundo->Status_M126){$cont_dif3++;}
+            if($planta->Status_M127!=$plantaPostos_segundo->Status_M127){$cont_dif3++;}
+            if($planta->Status_M128!=$plantaPostos_segundo->Status_M128){$cont_dif3++;}
+            if($planta->Status_M129!=$plantaPostos_segundo->Status_M129){$cont_dif3++;}
+            if($planta->Status_M130!=$plantaPostos_segundo->Status_M130){$cont_dif3++;}
+            if($planta->Status_M131!=$plantaPostos_segundo->Status_M131){$cont_dif3++;}
+            if($planta->Status_M132!=$plantaPostos_segundo->Status_M132){$cont_dif3++;}
+            if($planta->Status_M133!=$plantaPostos_segundo->Status_M133){$cont_dif3++;}
+            if($planta->Status_M134!=$plantaPostos_segundo->Status_M134){$cont_dif3++;}
+            if($planta->Status_M135!=$plantaPostos_segundo->Status_M135){$cont_dif3++;}
+            if($planta->Status_M136!=$plantaPostos_segundo->Status_M136){$cont_dif3++;}
+            if($planta->Status_M137!=$plantaPostos_segundo->Status_M137){$cont_dif3++;}
+            if($planta->Status_M138!=$plantaPostos_segundo->Status_M138){$cont_dif3++;}
+            if($planta->Status_M139!=$plantaPostos_segundo->Status_M139){$cont_dif3++;}
+            if(($cont_dif3==0) and ($cont_dif!=0)){
+                //echo('igual ao posto 2<br>');
+                $check_postos = $planta->Num_postos;
+                $check_postos--;
+                //$check_postos--;
+                $cont_dif = 0;
+                $planta->Num_postos = $check_postos;
+                $planta->aprendeu_planta = '2';
+                $planta->save();
+            }
+            elseif($cont_dif3!=0 and $cont_dif!=0){
+                $planta->Id_control = '0';
+                $planta->save();
+            }            
+        }
+    }
+
+
     if($cont_dif > 0)
     {
         $check_num_postos = $planta->Num_postos;
@@ -88,6 +188,7 @@ function atualizar_bd_comparacao($id_principal)
 
         $novoposto->Nome_da_Planta = "Posto".$check_num_postos;
         $planta->Num_postos = $check_num_postos;
+        //$planta->Id_control = 2;
         print_r($planta->Num_postos);
         $planta->save();
         
@@ -124,9 +225,9 @@ function atualizar_bd_comparacao($id_principal)
             $planta->save();
             print_r("id guardado<br>");
         }
-        print_r("status diferente<br>");
+        //print_r("status diferente<br>");
     }
-    else{print_r("status igual<br>");}
+    //else{print_r("status igual<br>");}
 }
 // inicio do programa
 function exe($id_principal)
@@ -143,9 +244,12 @@ function exe($id_principal)
     }
 
     if($check_aprendeu == '1')
-    {      
-        $num_postos = $planta->Num_postos;
-        $num_saidas = $planta->Quant_saidas;
+    {   
+        atualizar_bd_comparacao($id_principal);   
+        //$num_postos = $planta->Num_postos;
+        //$num_saidas = $planta->Quant_saidas;
+
+        /*
         if($num_postos < $num_saidas)
         {
             atualizar_bd_comparacao($id_principal);
@@ -154,6 +258,7 @@ function exe($id_principal)
             $planta->aprendeu_planta = 2;
             $planta->save();
         }// número máximo de postos criados.
+        */
     }
 
     if($check_aprendeu == '2')
@@ -175,7 +280,7 @@ function exe($id_principal)
     </div> 
     
     <script type="text/javascript">
-    setInterval("my_function();",200); 
+    setInterval("my_function();",100); 
  
     function my_function(){
         $('#refresh').load(location.href + ' #time');
